@@ -222,11 +222,11 @@ public synchronized boolean updateBookDetails(int id, String title, String categ
         
         pstmt.setString(1, title);
         pstmt.setString(2, category);
-        pstmt.setString(3, status); // This matches 'availability_status'
+        pstmt.setString(3, status); 
         pstmt.setInt(4, id);
         
         int rowsAffected = pstmt.executeUpdate();
-        return rowsAffected > 0; // Crucial: This returns true so the GUI knows to refresh
+        return rowsAffected > 0; 
         
     } catch (SQLException e) {
         System.err.println("SQL Update Error: " + e.getMessage());

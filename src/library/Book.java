@@ -5,7 +5,7 @@ public class Book {
     private String title;
     private String author;
     private String category;
-    private String availabilityStatus; // This matches your DB column
+    private String availabilityStatus; 
 
     public Book(int id, String title, String author, String category, String status) {
         this.bookId = id;

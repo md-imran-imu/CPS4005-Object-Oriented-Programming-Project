@@ -309,7 +309,7 @@ private void handleUpdateBook() {
             boolean success = db.updateBookDetails(id, t.getText().trim(), c.getText().trim(), (String) s.getSelectedItem());
             
             if (success) {
-                refreshTablesAsync(); // Reload the table if successful
+                refreshTablesAsync(); 
             } else {
                 showError("Database update failed. Check console for details.");
             }
@@ -377,7 +377,6 @@ private void handleUpdateMember() {
     }
     
     try {
-        // Match indices to your table: 0=ID, 1=Name, 2=Email, 3=Type
         int id = Integer.parseInt(memberTable.getValueAt(r, 0).toString());
         String currentName = memberTable.getValueAt(r, 1).toString();
         String currentEmail = memberTable.getValueAt(r, 2).toString();
@@ -399,13 +398,11 @@ private void handleUpdateMember() {
             String newEmail = emailF.getText().trim();
             String newType = (String) typeC.getSelectedItem();
 
-            // Validation: Fields cannot be empty [cite: 254]
             if (newName.isEmpty() || newEmail.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Name and Email are required.", "Validation Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Validation: Email format [cite: 91, 257]
             if (!newEmail.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
                 JOptionPane.showMessageDialog(this, "Please enter a valid email format.", "Format Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -446,7 +443,6 @@ private void handleDeleteMember() {
 }
 
 private void handleIssueLoan() {
-    // Set up Date Spinners for a professional UI[cite: 3, 9]
     SpinnerDateModel borrowModel = new SpinnerDateModel();
     JSpinner borrowSpinner = new JSpinner(borrowModel);
     JSpinner.DateEditor borrowEditor = new JSpinner.DateEditor(borrowSpinner, "yyyy-MM-dd");
@@ -469,7 +465,6 @@ private void handleIssueLoan() {
         String bookIdStr = b.getText().trim();
         String memIdStr = m.getText().trim();
         
-        // 1. Check for empty fields
         if (bookIdStr.isEmpty() || memIdStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "All fields are required.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -479,12 +474,10 @@ private void handleIssueLoan() {
             int bookId = Integer.parseInt(bookIdStr);
             int memId = Integer.parseInt(memIdStr);
             
-            // 2. Format dates from spinners[cite: 4, 9]
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
             String bDate = sdf.format(borrowSpinner.getValue());
             String dDate = sdf.format(dueSpinner.getValue());
 
-            // 3. Date Logic Validation: Due date must be after borrow date
             if (dueModel.getDate().before(borrowModel.getDate())) {
                 JOptionPane.showMessageDialog(this, "Due date cannot be earlier than the issue date.", "Logic Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -503,7 +496,6 @@ private void handleIssueLoan() {
 }
 
 private void handleDeleteBorrowRecord() {
-    // 1. Selection Check
     int row = borrowTable.getSelectedRow();
     if (row == -1) {
         JOptionPane.showMessageDialog(this, 
@@ -513,10 +505,8 @@ private void handleDeleteBorrowRecord() {
         return;
     }
 
-    // 2. Extract Record ID from Column 0
     int recordId = (int) borrowTable.getValueAt(row, 0);
 
-    // 3. Confirmation Dialogue (Assessment Requirement)
     int confirm = JOptionPane.showConfirmDialog(this, 
         "Are you sure you want to delete borrowing record #" + recordId + "?", 
         "Confirm Deletion", 
