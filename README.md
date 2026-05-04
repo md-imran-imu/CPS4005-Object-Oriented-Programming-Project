@@ -63,7 +63,7 @@ CSE4005-OOP-PROJECT/
 1. #### Clone & Setup
 Navigate to your project directory:
 ```bash
-cd CSE4005-OOP-PROJECT
+cd CPS4005-Object-Oriented-Programming-Project
 ```
 
 2. #### Compilation

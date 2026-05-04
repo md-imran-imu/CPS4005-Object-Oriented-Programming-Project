@@ -18,7 +18,7 @@ Please follow these exact steps from the terminal or command prompt.
 ### Step 1: Open the Project Directory
 Navigate to the root folder of the unzipped project (where this README is located):
 ```bash
-cd CPS4005-OOP-PROJECT
+cd CPS-4005-OOP-PROJECT
 ```
 
 ### Step 2: Compile the Java Source Code
